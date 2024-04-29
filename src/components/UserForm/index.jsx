@@ -5,11 +5,18 @@ import Loading from '../Loading';
 
 
 
-const UserForm = ({isLogin = true, isUserData = false, onSubmit, errors}) => {
-  const [loginData, setLoginData] = useState({});
-  const [userData, setUserData] = useState({}); 
+const UserForm = ({isLogin = true, isUserData = false, onSubmit}) => {
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: '',
+  });
+  const [userData, setUserData] = useState({
+    name: '',
+    nick: '',
+    phone: '',
+  }); 
   const { isLoading } = useContext(EarnyContext);
-
+  const [ accept, setAccept ] = useState(false);
   const setEmail = ({target: {value}}) => {
     const newLoginData = {
       ...loginData,
@@ -41,7 +48,7 @@ const UserForm = ({isLogin = true, isUserData = false, onSubmit, errors}) => {
   const setPhone = ({target: {value}}) => {
     const newUserData = {
       ...userData,
-      phone: value,
+      phone: '+57' + value,
     };
     setUserData(newUserData);
   };
@@ -61,11 +68,11 @@ const UserForm = ({isLogin = true, isUserData = false, onSubmit, errors}) => {
       <>
         <span>
             <h3 className="roboto-bold-italic">* Email:</h3>
-            <input type="email" onChange={setEmail}/>
+            <input type="text" onChange={setEmail}/>
         </span>
         <span>
           <h3 className="roboto-bold-italic">* Contraseña:</h3>
-          <input type="password" onChange={setPassword}/>
+          <input type="password" autoComplete="current-password" onChange={setPassword}/>
       </span>
       </>
     }
@@ -82,14 +89,18 @@ const UserForm = ({isLogin = true, isUserData = false, onSubmit, errors}) => {
       </span>
       <span>
         <h3 className="roboto-bold-italic">* Nombre:</h3>
-        <input type="text" onChange={setName}/>
+        <input type="text" onChange={setName} autoComplete='name'/>
       </span>
       <span>
         <h3 className="roboto-bold-italic">* Nombre de usuario:</h3>
         <span className='flex items-center gap-[1px]'>
           <label className='p-1 bg-app-100 px-2 text-app-700 border-r-app-700 rounded-md rounded-r-none'>@</label>
-          <input type="text" onChange={setNick} className='w-full rounded-md rounded-l-none bg-app-100 text-app-700 px-2 py-1 outline-none'/>
+          <input type="text" onChange={setNick} autoComplete='nickname' className='w-full rounded-md rounded-l-none bg-app-100 text-app-700 px-2 py-1 outline-none'/>
         </span>
+      </span>
+      <span className='flex gap-2'>
+        <input type="checkbox" className='!w-4' onChange={(e) => setAccept(e.target.checked)}/>
+        <p className="roboto-bold-italic !w-3/4 text-sm">Estoy deacuerdo con las políticas de privacidad y tratamiento de datos.</p>
       </span>
     </>
     }
@@ -97,7 +108,10 @@ const UserForm = ({isLogin = true, isUserData = false, onSubmit, errors}) => {
     isLoading &&
       <Loading/>
     }
-    <button className='rounded-full bg-app-100 text-app-700 px-4 py-2 hover:bg-app-600 hover:text-app-100 transition-colors'>{ btnMsg }</button>
+    <button disabled={isUserData && !accept}
+    className='rounded-full bg-app-100 text-app-700 px-4 py-2 hover:bg-app-600 hover:text-app-100 transition-colors disabled:opacity-10'>
+      { btnMsg }
+    </button>
     </form>
   );
 };

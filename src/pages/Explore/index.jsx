@@ -6,12 +6,35 @@ import BusinessService from '../../services/business.service';
 const Explore = props => {
   const [businessPage, setBusinessPage] = useState([]);
   const [page, setPage] = useState(1);
-  const { setLoading } = useContext(EarnyContext);
+  const { setLoading, handleSnackClick } = useContext(EarnyContext);
   useEffect(() => {
     setLoading(true);
+    const alertProps = {
+      severity: 'error',
+      variant: 'filled',
+    };
     BusinessService.getTrending(page)
       .then(result => {
-        if(result) setBusinessPage(result);
+        if(result.error){
+          if( result.message ){
+            alertProps.message = result.message;
+          }else{
+            alertProps.message = '¡Ups! Parece que ha ocurrido un problema.';
+          }
+          handleSnackClick(alertProps);
+          setBusinessPage([]);
+        }else{
+          setBusinessPage(result);
+        }
+      })
+      .catch(err => {
+        if( err.message ){
+          alertProps.message = err.message;
+        }else{
+          alertProps.message = '¡Ups! Parece que ha ocurrido un problema.';
+        }
+        handleSnackClick(alertProps);
+        setBusinessPage([]);
       })
       .finally( () => {
         setLoading(false);

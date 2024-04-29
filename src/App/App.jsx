@@ -1,5 +1,7 @@
 import {useRoutes, HashRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+
 import User from '../pages/User';
 import Home from '../pages/Home';
 import Register from '../pages/Register';
@@ -8,6 +10,7 @@ import Login from '../pages/Login';
 import { EarnyProvider } from '../context/EarnyContext';
 import Explore from '../pages/Explore';
 import NotFound from '../pages/NotFound';
+import BusinessMe from '../pages/BusinessMe';
 
 const AppRoutes = () => useRoutes([
   {
@@ -34,18 +37,23 @@ const AppRoutes = () => useRoutes([
     path: '/explore',
     Component: Explore,
   },
+  {
+    path: '/business/me',
+    Component: BusinessMe,
+  },
 ]);
 
 
 const App = () => {
+  
   return (
-    <EarnyProvider>
-      <HashRouter>
+    <HashRouter>
+      <EarnyProvider>
         <AppTemplate>
             <AppRoutes/>
         </AppTemplate>
-      </HashRouter>
-    </EarnyProvider>
+      </EarnyProvider>
+    </HashRouter>
   );
 };
 

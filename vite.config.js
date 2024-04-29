@@ -55,6 +55,7 @@ const pwaConfig = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), VitePWA(pwaConfig)],
+  plugins: [react()],
   base: '/earny/',
 });
+//VitePWA(pwaConfig)
