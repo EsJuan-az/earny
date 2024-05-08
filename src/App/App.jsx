@@ -11,6 +11,7 @@ import { EarnyProvider } from '../context/EarnyContext';
 import Explore from '../pages/Explore';
 import NotFound from '../pages/NotFound';
 import BusinessMe from '../pages/BusinessMe';
+import BusinessPage from '../pages/BusinessPage';
 
 const AppRoutes = () => useRoutes([
   {
@@ -40,6 +41,10 @@ const AppRoutes = () => useRoutes([
   {
     path: '/business/me',
     Component: BusinessMe,
+  },
+  {
+    path: '/business/:id',
+    Component: BusinessPage,
   },
 ]);
 

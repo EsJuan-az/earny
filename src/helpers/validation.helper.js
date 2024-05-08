@@ -33,8 +33,8 @@ class Validation{
     }
     static validBusinessname(username) {
         // Expresión regular para validar el nombre de usuario
-        const regex = /^[A-Za-z0-9](?:[A-Za-z0-9._:!¡]{0,18}[A-Za-z0-9])?$/;
-      
+        const regex = /^[a-zA-Z0-9 ¡!¿?\-:""%&,]+$/;
+    
         // Testear la expresión regular contra el nombre de usuario proporcionado
         return regex.test(username);
     }

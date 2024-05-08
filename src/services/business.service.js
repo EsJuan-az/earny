@@ -36,5 +36,19 @@ class BusinessService{
             if( resp ) return resp.json();
         });
     }
+    static getOne(id, token){
+        const headers = {
+            'Content-Type': 'application/json',
+        };
+        if(token){
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+        return fetch(VITE_SERVICE_URL + '/business/' + id, {
+            method: 'GET', 
+            headers,
+        }).then(resp => {
+            if( resp ) return resp.json();
+        });
+    }
 }
 export default BusinessService;

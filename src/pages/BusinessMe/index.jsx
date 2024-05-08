@@ -7,15 +7,16 @@ import { Fab, Modal } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 import Validation from "../../helpers/validation.helper";
+import Loading from "../../components/Loading";
 
 const BusinessMe = (props) => {
   const [businessPage, setBusinessPage] = useState([]);
   const [ modalOpen, setModalOpen ] = useState(false);
   const handleModalClose = () => setModalOpen(false);
   const handleModalOpen = () => setModalOpen(true);
-  const [business, setBusiness ] = useState({name: ''});
+  const [business, setBusiness ] = useState({name: '', description: ''});
   const [page, setPage] = useState(1);
-  const { setLoading, handleSnackClick, auth_token, auth, navigate } = useContext(EarnyContext);
+  const { setLoading, handleSnackClick, auth_token, auth, navigate, isLoading } = useContext(EarnyContext);
   const formOnAddBusiness = e => {
     const alertProps = {
         severity: 'error',
@@ -96,20 +97,27 @@ const BusinessMe = (props) => {
       </p>
       <BusinessPane page={businessPage} />
       <Modal
+        className='backdrop-blur-[2px]'
         open={modalOpen}
         onClose={handleModalClose}
       >
-        <section className='bg-app-purple p-4 text-app-100 rounded-md absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+        <section className='bg-app-700 p-4 text-app-100 rounded-md absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+            {isLoading && <Loading/>}
             <h2 className="bebas-neue-regular text-4xl select-none">
                 Inicia tu emprendimiento
             </h2>
-            <form className="w-full flex flex-col items-center" onSubmit={formOnAddBusiness}>
-                <span className=" w-full
-                    [&>input]:w-full [&>input]:block [&>input]:outline-none [&>input]:bg-app-100 [&>input]:text-app-700
-                    [&>input]:px-2 [&>input]:py-1 [&>input]:rounded-md
-                    [&>h3]:mr-4">
+            <form className="w-full flex flex-col items-center
+              [&>span]w-full
+              [&>span>input]:w-full [&>span>input]:block [&>span>input]:outline-none [&>span>textarea]:outline-none [&>span>input]:bg-app-100 [&>span>input]:text-app-700
+              [&>span>input]:px-2 [&>span>input]:py-1 [&>span>input]:rounded-md [&>span>textarea]:resize-none [&>span>textarea]:text-black
+              [&>span>h3]:mr-4 [&>span>textarea]:h-28 [&>span>textarea]:rounded-md [&>span>textarea]:py-1 [&>span>textarea]:px-2 [&>span>textarea]:w-full" onSubmit={formOnAddBusiness}>
+                <span>
                     <h3 className="roboto-bold-italic">Nombre de tu negocio:</h3>
-                    <input type="text" onChange={e => setBusiness({...business, name: e.target.value})} autoComplete='name'/>
+                    <input type="text" onChange={e => setBusiness({...business, name: e.target.value})} autoComplete='business-name'/>
+                </span>
+                <span>
+                    <h3 className="roboto-bold-italic">Describe brevemente tu negocio:</h3>
+                    <textarea type="text" onChange={e => setBusiness({...business, description: e.target.value})} autoComplete='business-description'/>
                 </span>
                 <button
                 className='rounded-full mt-3 bg-app-100 text-app-700 px-4 py-2 hover:bg-app-600 hover:text-app-100 transition-colors'>
@@ -119,10 +127,12 @@ const BusinessMe = (props) => {
         </section>
       </Modal>
       <Fab
+        variant="extended"
         className="!fixed bottom-3 right-3 !bg-black !text-white"
         onClick={() => handleModalOpen()}
       >
-        <AddIcon className="text-xl" />
+        <AddIcon className="text-xl" sx={{ mr: 1 }}/>
+        Emprende
       </Fab>
     </section>
   );

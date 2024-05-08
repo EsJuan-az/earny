@@ -1,16 +1,28 @@
 import PropTypes from 'prop-types';
-const BusinessCard = ({business:{name, image}}) => {
+import { Link } from 'react-router-dom';
+import { EarnyContext } from '../../context/EarnyContext';
+import { useContext } from 'react';
+const BusinessCard = ({business}) => {
+  const { auth } = useContext(EarnyContext);
+  const {name, image, description, holder_id, id} = business;
   return (
-    <section className='bg-app-700 rounded-md p-3 h-32 text-app-100 max-h-36 my-2 relative rounded-tl-none'>
+    <Link to={`/business/${id}`} className='bg-app-700 flex flex-col gap-3 items-center rounded-md p-3 h-72 text-app-100
+    max-h-72 my-2 relative rounded-tl-none overflow-clip cursor-pointer hover:-translate-y-3 transition-all'>
+      <figure className='w-40'>
+        <img
+          src={image || `https://picsum.photos/300/300?random=${name}`} alt="name"
+          className='w-full rounded-full'
+        />
+      </figure>
+      <div>
         <div className='bg-lime-400 w-3 h-3 rounded-full absolute top-2 right-2 animate-pulse'></div>
-        <h2 className='bebas-neue-regular text-2xl'>{name}</h2>
-        <ul>
-          <li>Imagen</li>
-          <li>Descripción</li>
-          <li>Imagen de productos</li>
-        </ul>
-    </section>
+        <h2 className='text-2xl font-bold'>{name}</h2>
+        <li className="text-sm italic font-thin">{description}</li>
+      </div>
+    </Link>
   );
 };
-BusinessCard.propTypes = {};
+BusinessCard.propTypes = {
+  business: PropTypes.object,
+};
 export default BusinessCard;

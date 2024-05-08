@@ -12,7 +12,6 @@ const UserForm = ({isLogin = true, isUserData = false, onSubmit}) => {
   });
   const [userData, setUserData] = useState({
     name: '',
-    nick: '',
     phone: '',
   }); 
   const { isLoading } = useContext(EarnyContext);
@@ -35,13 +34,6 @@ const UserForm = ({isLogin = true, isUserData = false, onSubmit}) => {
     const newUserData = {
       ...userData,
       name: value,
-    };
-    setUserData(newUserData);
-  };
-  const setNick = ({target: {value}}) => {
-    const newUserData = {
-      ...userData,
-      nick: value,
     };
     setUserData(newUserData);
   };
@@ -90,13 +82,6 @@ const UserForm = ({isLogin = true, isUserData = false, onSubmit}) => {
       <span>
         <h3 className="roboto-bold-italic">* Nombre:</h3>
         <input type="text" onChange={setName} autoComplete='name'/>
-      </span>
-      <span>
-        <h3 className="roboto-bold-italic">* Nombre de usuario:</h3>
-        <span className='flex items-center gap-[1px]'>
-          <label className='p-1 bg-app-100 px-2 text-app-700 border-r-app-700 rounded-md rounded-r-none'>@</label>
-          <input type="text" onChange={setNick} autoComplete='nickname' className='w-full rounded-md rounded-l-none bg-app-100 text-app-700 px-2 py-1 outline-none'/>
-        </span>
       </span>
       <span className='flex gap-2'>
         <input type="checkbox" className='!w-4' onChange={(e) => setAccept(e.target.checked)}/>
