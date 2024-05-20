@@ -102,8 +102,9 @@ const BusinessPage = props => {
           .then((result) => {
             if (!result.error) {
               setAnalyticData(result);
+            }else{
+              setAnalyticError(true);
             }
-            setAnalyticError(true);
           })
           .catch((err) => {
             setAnalyticError(true);
