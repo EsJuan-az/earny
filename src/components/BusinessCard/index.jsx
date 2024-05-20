@@ -29,7 +29,7 @@ const BusinessCard = ({business}) => {
       <AccordionDetails className='text-white w-full'>
         <section className='w-full'>
           Detalles:
-          <li className="text-sm italic font-thin">{description && ManyHelper.limitText(description, 69)}</li>
+          <li className="text-sm italic font-thin">{description}</li>
           <Link to={`/business/${id}`} className='bg-app-purple rounded-full px-3 py-1 w-full mt-2 m-auto'>Ir al sitio.</Link>
         </section>
       </AccordionDetails>

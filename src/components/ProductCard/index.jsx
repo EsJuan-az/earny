@@ -52,7 +52,7 @@ const ProductCard = ({product, user_has_rights, onDelete}) => {
         }
       </AccordionSummary>
       <AccordionDetails className='bg-black '>
-        <li className="text-sm text-white italic font-thin">{description && ManyHelper.limitText(description, 50)}</li>
+        <li className="text-sm text-white italic font-thin">{description}</li>
       </AccordionDetails>
     </Accordion>
   );
