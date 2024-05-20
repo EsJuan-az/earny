@@ -84,8 +84,11 @@ const UserForm = ({isLogin = true, isUserData = false, onSubmit}) => {
         <input type="text" onChange={setName} autoComplete='name'/>
       </span>
       <span className='flex gap-2'>
-        <input type="checkbox" className='!w-4' onChange={(e) => setAccept(e.target.checked)}/>
-        <p className="roboto-bold-italic !w-3/4 text-sm">Estoy deacuerdo con las políticas de privacidad y tratamiento de datos.</p>
+        
+        <p className="roboto-bold-italic text-sm">
+        <input type="checkbox" className='size-4 mr-4' onChange={(e) => setAccept(e.target.checked)}/>
+          Estoy de acuerdo con las <a className='text-app-purple underline' href="https://www.freeprivacypolicy.com/live/ec4deb7f-0daa-4cee-9520-06e2376a54ba">políticas de privacidad y tratamiento de datos.</a>
+        </p>
       </span>
     </>
     }

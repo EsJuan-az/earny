@@ -31,16 +31,13 @@ const Register = props => {
     }else if( !Validation.validRealName(data.name) ){
       alertProps.message = 'Tu nombre no es válido.';
       return handleSnackClick(alertProps);
-    }else if( !Validation.validUsername(data.nick) ){
-      alertProps.message = 'Tu nickname no es válido.';
-      return handleSnackClick(alertProps);
     }
     // Hacer la petición.
     setLoading(true);
     return UserService.register(data)
       .then(resp => {
         if(resp.error){
-          alertProps.message = 'Intentalo denuevo en unos minutos.';
+          alertProps.message = resp.message || 'Intentalo denuevo en unos minutos.';
           return;
         }
         alertProps.severity = 'success';

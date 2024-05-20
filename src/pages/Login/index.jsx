@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import UserForm from '../../components/UserForm';
 import { EarnyContext } from '../../context/EarnyContext';
 import UserService from '../../services/user.service';
+import { Link } from 'react-router-dom';
 
 const Login = props => {
   const { setLoading, setAuthToken, handleSnackClick, navigate, auth } = useContext(EarnyContext);
@@ -48,6 +49,9 @@ const Login = props => {
       <h2 className='bebas-neue-regular text-4xl text-app-100 select-none'>¡Bienvenido de nuevo!</h2>
       <p className='roboto-medium text-app-100 mb-2 select-none'>¡Nos alegra verte por estos lados!</p>
       <UserForm isLogin onSubmit={formOnSubmit}/>
+      <p className='roboto-medium text-app-100 mb-2 select-none mt-1'>
+        ¿No tienes una cuenta? <Link exact="true" to="/register" className="underline">Regístrate</Link>
+      </p>
     </section>
   );
 };

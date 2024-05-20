@@ -14,26 +14,6 @@ const AppTemplate = ({children}) => {
       <section className='mt-16 m-auto'>
         {children}
       </section>
-      <Snackbar className="z-10"
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={snackOpen}
-        onClose={handleSnackClose}
-        TransitionComponent={Fade}
-        autoHideDuration={1200}
-      >
-        <Alert
-          onClose={handleSnackClose}
-          variant={snackAlertProps.variant}
-          severity={snackAlertProps.severity}
-          sx={{ width: '100%' }}
-        >
-          {snackAlertProps.message}
-        </Alert>
-      </Snackbar>
-
     </>
   );
 };

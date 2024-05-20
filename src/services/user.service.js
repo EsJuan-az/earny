@@ -1,5 +1,17 @@
 const {VITE_SERVICE_URL} = import.meta.env;
 class UserService{
+    static updateMe(token, body){
+        return fetch(VITE_SERVICE_URL + '/user/me', {
+            method: 'PUT', 
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        }).then(resp => {
+            if( resp ) return resp.json();
+        });
+    }
     static register(data){
         return fetch(VITE_SERVICE_URL + "/user", {
             method: 'POST', 

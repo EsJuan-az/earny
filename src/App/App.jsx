@@ -12,6 +12,12 @@ import Explore from '../pages/Explore';
 import NotFound from '../pages/NotFound';
 import BusinessMe from '../pages/BusinessMe';
 import BusinessPage from '../pages/BusinessPage';
+import MyAccount from '../pages/MyAccount';
+import MyOrders from '../pages/MyOrders';
+import BusinessOrders from '../pages/BusinessOrders';
+import Recent from '../pages/Recent';
+import About from '../pages/About';
+
 
 const AppRoutes = () => useRoutes([
   {
@@ -31,6 +37,10 @@ const AppRoutes = () => useRoutes([
     Component: Login,
   },
   {
+    path: '/my-account',
+    Component: MyAccount,
+  },
+  {
     path: '/user',
     Component: User,
   },
@@ -43,8 +53,28 @@ const AppRoutes = () => useRoutes([
     Component: BusinessMe,
   },
   {
+    path: '/business/analytics',
+    Component: NotFound,
+  },
+  {
     path: '/business/:id',
     Component: BusinessPage,
+  },
+  {
+    path: '/orders',
+    Component: MyOrders,
+  },
+  {
+    path: '/movements',
+    Component: BusinessOrders,
+  },
+  {
+    path: '/recent',
+    Component: Recent,
+  },
+  {
+    path: '/about',
+    Component: About,
   },
 ]);
 
