@@ -6,7 +6,7 @@ class RecordService{
             mode: 'cors', 
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`;
+              'Authorization': `Bearer ${token}`,
             },
         }).then(resp => {
             if( resp ) return resp.json();

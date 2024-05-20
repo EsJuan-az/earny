@@ -100,13 +100,14 @@ const BusinessPage = props => {
       if(business && business.user_has_rights){
         BusinessService.getOneAnalytics(id, auth_token)
           .then((result) => {
+            console.log(result);
             if (!result.error) {
               setAnalyticData(result);
             }else{
               setAnalyticError(true);
             }
           })
-          .catch((err) => {
+          .catch(() => {
             setAnalyticError(true);
           });
       }

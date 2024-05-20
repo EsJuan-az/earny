@@ -6,7 +6,7 @@ const RecordCard = ({record}) => {
   const { auth } = useContext(EarnyContext);
   console.log(auth);
   return (
-    <Card className={`text-white p-3 flex gap-3 items-center relative font-medium ${auth?.id == record.user_id ? 'bg-gray-900' : 'bg-black'}`}>
+    <Card className={`text-white p-3 flex gap-3 items-center relative font-medium bg-black`}>
         <Avatar
             sx={{bgcolor: '#4E54C8'}}
             className="text-center cursor-pointer relative ">
