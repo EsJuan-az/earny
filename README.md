@@ -7,7 +7,7 @@
 - [🐾 Paso a paso.](#-paso-a-paso)
 - [🚀 Acerca de mí.](#-acerca-de-mí)
 - [⚠️Uso](#template-details)
-
+- [⚓Agradecimientos](#librerías-externas)
 
 
 
@@ -125,3 +125,12 @@ Currently, using below packages:
 - [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) for PWA support
 
 - [@vite-pwa/assets-generator](https://vite-pwa-org.netlify.app/assets-generator/) for generating pwa assets
+
+# Librerías externas.
+Este proyecto fue realizado usando las siguientes herramientas de terceros.
+    - Vite.
+    - React.js.
+    - Lorem Picsum (Imagenes de productos y empresas).
+    - Material UI (Componentes).
+    - Material Icons (Iconos). 
+    - Open Street Map (Mapas de las ordenes.)

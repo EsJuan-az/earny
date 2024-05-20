@@ -5,13 +5,13 @@ import RecordPane from '../../components/RecordPane';
 import { EarnyContext } from '../../context/EarnyContext';
 const Recent = props => {
   const [ records, setRecords ] = useState(null);
-  const {handleSnackClick} = useContext(EarnyContext);
+  const {handleSnackClick, auth_token} = useContext(EarnyContext);
     useEffect(() => {
       const alertProps = {
         severity: "error",
         variant: "filled",
       };
-      RecordService.getAll()
+      RecordService.getAll(auth_token)
       .then((result) => {
           if (result.error) {
             if (result.message) {

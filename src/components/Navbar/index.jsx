@@ -160,11 +160,6 @@ const Navbar = props => {
                     </span>
                 </Tooltip>
             </Badge>
-            <Tooltip title="Acciones Recientes">
-                        <NavLink exact="true" to='/recent' className={''}>
-                            <Icon sx={{ fontSize: 30 }} className='flex items-center'>info</Icon>
-                        </NavLink>
-            </Tooltip>
             {   !auth ?
                 <>
                     <Tooltip title="Regístrate">
@@ -180,6 +175,11 @@ const Navbar = props => {
                 </>
                 : 
                 <>
+                    <Tooltip title="Acciones Recientes">
+                            <NavLink exact="true" to='/recent' className={''}>
+                                <Icon sx={{ fontSize: 30 }} className='flex items-center'>info</Icon>
+                            </NavLink>
+                    </Tooltip>
                     <Tooltip title="Tus negocios">
                         <NavLink exact="true" to='/business/me'>
                             <Store sx={{ fontSize: 30 }}/>
